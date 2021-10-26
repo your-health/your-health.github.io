@@ -1,0 +1,10 @@
+your\_health.client\_code.Drugs.DrugsRow package
+================================================
+
+Module contents
+---------------
+
+.. automodule:: your_health.client_code.Drugs.DrugsRow
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,10 @@
+your\_health.client\_code.Profile.ProfileRow package
+====================================================
+
+Module contents
+---------------
+
+.. automodule:: your_health.client_code.Profile.ProfileRow
+   :members:
+   :undoc-members:
+   :show-inheritance:

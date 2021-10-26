@@ -1,0 +1,18 @@
+your\_health.client\_code.Immunizations package
+===============================================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   your_health.client_code.Immunizations.ImmunizationsRow
+
+Module contents
+---------------
+
+.. automodule:: your_health.client_code.Immunizations
+   :members:
+   :undoc-members:
+   :show-inheritance:

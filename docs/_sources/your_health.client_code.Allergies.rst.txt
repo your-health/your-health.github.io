@@ -1,0 +1,18 @@
+your\_health.client\_code.Allergies package
+===========================================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   your_health.client_code.Allergies.AllergiesRow
+
+Module contents
+---------------
+
+.. automodule:: your_health.client_code.Allergies
+   :members:
+   :undoc-members:
+   :show-inheritance:

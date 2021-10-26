@@ -1,0 +1,65 @@
+your\_health.client\_code package
+=================================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   your_health.client_code.Allergies
+   your_health.client_code.Chronics
+   your_health.client_code.Contacts
+   your_health.client_code.Drugs
+   your_health.client_code.Homepage
+   your_health.client_code.Immunizations
+   your_health.client_code.LoadExamples
+   your_health.client_code.MyLinks
+   your_health.client_code.Notes
+   your_health.client_code.Profile
+   your_health.client_code.Scratch
+   your_health.client_code.Summary
+   your_health.client_code.UploadToDB
+
+Submodules
+----------
+
+your\_health.client\_code.Logger module
+---------------------------------------
+
+.. automodule:: your_health.client_code.Logger
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+your\_health.client\_code.Start\_Module module
+----------------------------------------------
+
+.. automodule:: your_health.client_code.Start_Module
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+your\_health.client\_code.Timer module
+--------------------------------------
+
+.. automodule:: your_health.client_code.Timer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+your\_health.client\_code.Utilities module
+------------------------------------------
+
+.. automodule:: your_health.client_code.Utilities
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: your_health.client_code
+   :members:
+   :undoc-members:
+   :show-inheritance:

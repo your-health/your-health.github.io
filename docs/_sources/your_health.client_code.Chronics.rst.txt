@@ -1,0 +1,18 @@
+your\_health.client\_code.Chronics package
+==========================================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   your_health.client_code.Chronics.ChronicsRow
+
+Module contents
+---------------
+
+.. automodule:: your_health.client_code.Chronics
+   :members:
+   :undoc-members:
+   :show-inheritance:

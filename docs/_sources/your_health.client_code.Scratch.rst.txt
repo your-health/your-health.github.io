@@ -1,0 +1,10 @@
+your\_health.client\_code.Scratch package
+=========================================
+
+Module contents
+---------------
+
+.. automodule:: your_health.client_code.Scratch
+   :members:
+   :undoc-members:
+   :show-inheritance:

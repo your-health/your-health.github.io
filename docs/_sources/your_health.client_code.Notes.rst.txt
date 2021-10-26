@@ -1,0 +1,18 @@
+your\_health.client\_code.Notes package
+=======================================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   your_health.client_code.Notes.NotesRow
+
+Module contents
+---------------
+
+.. automodule:: your_health.client_code.Notes
+   :members:
+   :undoc-members:
+   :show-inheritance:

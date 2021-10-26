@@ -1,0 +1,10 @@
+your\_health.client\_code.Allergies.AllergiesRow package
+========================================================
+
+Module contents
+---------------
+
+.. automodule:: your_health.client_code.Allergies.AllergiesRow
+   :members:
+   :undoc-members:
+   :show-inheritance:

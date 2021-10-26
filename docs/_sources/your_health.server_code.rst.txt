@@ -1,0 +1,29 @@
+your\_health.server\_code package
+=================================
+
+Submodules
+----------
+
+your\_health.server\_code.DatabaseProxy module
+----------------------------------------------
+
+.. automodule:: your_health.server_code.DatabaseProxy
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+your\_health.server\_code.ServerUtilities module
+------------------------------------------------
+
+.. automodule:: your_health.server_code.ServerUtilities
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: your_health.server_code
+   :members:
+   :undoc-members:
+   :show-inheritance:

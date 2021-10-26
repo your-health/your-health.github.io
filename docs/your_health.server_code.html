@@ -1,0 +1,408 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>your_health.server_code package &#8212; YourHealth 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="your_health.client_code.UploadToDB package" href="your_health.client_code.UploadToDB.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="your_health.client_code.UploadToDB.html" title="your_health.client_code.UploadToDB package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">YourHealth 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >your_health</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="your_health.html" accesskey="U">your_health package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">your_health.server_code package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="your-health-server-code-package">
+<h1>your_health.server_code package<a class="headerlink" href="#your-health-server-code-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-your_health.server_code.DatabaseProxy">
+<span id="your-health-server-code-databaseproxy-module"></span><h2>your_health.server_code.DatabaseProxy module<a class="headerlink" href="#module-your_health.server_code.DatabaseProxy" title="Permalink to this headline">¶</a></h2>
+<p>Server-side routines related to accessing data tables.</p>
+<p class="rubric">Notes</p>
+<ol class="arabic">
+<li><dl>
+<dt>Naming conventions for data table names &amp; rows:</dt><dd><p>1.  The data tables that store user data start with user_x
+where x is the characteristic stored in the row.
+For example: user_allergies.
+2.  The data table itself should always be referred to in the plural.</p>
+<blockquote>
+<div><p>Do use:     user_allergies
+Don’t use:  user_allergy</p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><dl class="simple">
+<dt>user_x_row is a single row in the user_x data table.</dt><dd><p>Do use:     user_allergies_row
+Don’t use:  user_allergy_row    (since user_allergy is not a data table)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>A shortcut to a row in user_x uses the singular form of x and is not prefixed with <a href="#id1"><span class="problematic" id="id2">user_</span></a></dt><dd><p>Do use:     allergy     (which is short for user_allergies_row)
+don’t use:  allergy_row (since allergy by itself already means it is a row)</p>
+</dd>
+</dl>
+</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Preferred order of related routines is CRUD based</dt><dd><p>add (create), get (read), update, delete, validate</p>
+</dd>
+</dl>
+</li>
+</ol>
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.add_example_data">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">add_example_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">emails</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.add_example_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add example data from template each user with an email in emails.
+If emails is None, the current user is used.</p>
+<p class="rubric">Notes</p>
+<ol class="arabic simple">
+<li><p>This is now called when user creates profile - consider suppressing this
+functionality later.</p></li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.add_user_row">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">add_user_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_table_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.add_user_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new row to data_table_name for the current user
+based on contents of column_dict.</p>
+<p>Returns new row addition as a single dictionary
+with the same format as get_user_items.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.delete_user_data">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">delete_user_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">emails</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.delete_user_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Danger!  This is only used in development/debugging,
+you can accidentally delete lots of data with this call!</p>
+<p>Delete all user data rows for users in emails list
+based on the table_dict tables flagged as ‘in_template’.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.delete_user_row">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">delete_user_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_table_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_row</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.delete_user_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete table_row from data_table_name.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.get_all_user_items">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">get_all_user_items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.get_all_user_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all data for current user for display in a summary form.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><p><strong>data_dict</strong> – Augments and returns table_dict for entries where in_summary=True
+by appending a new key ‘data’ which is a list of dictionaries
+suitable for a repeating panel form component.</p>
+<p>For example, the user allergies key/values would be:</p>
+<dl>
+<dt>{‘user_allergies’:</dt><dd><blockquote>
+<div><dl>
+<dt>{‘columns’: [“name”, “description”, “notes”],</dt><dd><dl>
+<dt>’data’:   [ {‘name’: value,</dt><dd><blockquote>
+<div><p>’description’: value,
+‘notes’: value</p>
+</div></blockquote>
+<p>} … for each data row]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p>… for each table in table_dict
+}</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.get_autocomplete_lists">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">get_autocomplete_lists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_of_dicts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.get_autocomplete_lists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of dictionaries with table and column keys,
+return the list will the ‘values’ key populated via get_autocomplete_options.</p>
+<p>list_of_dicts will have the format:</p>
+<blockquote>
+<div><dl>
+<dt>[  {‘table’:     “chronics”,</dt><dd><p>‘columns’:   [“abbreviation”, “description”],
+‘values’:    [],  # will be populated programatically
+‘textboxes’: [“new_condition_auto”,</p>
+<blockquote>
+<div><p>“condition_edit_auto”]}, … ]</p>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.get_autocomplete_options">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">get_autocomplete_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.get_autocomplete_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get list suitable for an autocomplete component to display
+columns’ values from table_name.</p>
+<p>This routine creates a set from all column values and returns it as a sorted list.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.get_table_names">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">get_table_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.get_table_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get list to data table names from global variable.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.get_user_emails">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">get_user_emails</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.get_user_emails" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return list of emails in user table.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.get_user_first_name">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">get_user_first_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.get_user_first_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get first name of user from user_profiles table.
+If user is not specified, the current user is used.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.get_user_items">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">get_user_items</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_table_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.get_user_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return rows and column data associated with columns_names from data_table_name
+for the current user as a list of dicts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_table_name</strong> (<em>str</em>) – Data table name to extract data from.
+For example, ‘user_allergies’</p></li>
+<li><p><strong>column_names</strong> (<em>list</em><em>(</em><em>str</em><em>)</em>) – Columns to return from data_table_name
+For example, [‘name’, ‘description’, ‘notes’]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p><strong>data_dict</strong> – Row and associated columns from data_table_name for the current user.
+For example, data_dict could be a list of dicts with format:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>[ {‘table_row’:   row,</dt><dd><p>’name’:         row[‘name’],
+‘description’:  row[‘description’],
+‘notes’:        row[‘notes’]}  … ]</p>
+</dd>
+</dl>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list(dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.get_user_profile">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">get_user_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.get_user_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the row of user_profiles associated with user.  If user is not specified,
+the current user is used.  If a profile row for the user does not exist
+it is created and the user is supplied with template data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.port_drug_table">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">port_drug_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.port_drug_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy all rows from user_drugs_rx to user_drugs.  Used only in initial development.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.safe_row_add">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">safe_row_add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">my_columns_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">my_user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.safe_row_add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new row to the table named table_name to my_user with my_columns_dict content.
+If my_user is unspecified, use the current user.</p>
+<p>Consider modifying method in subsequent releases to include additional validation.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.safe_row_delete">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">safe_row_delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">my_row</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.safe_row_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete the row (my_row) from the table named table_name.
+Method ensures that my_row already in the table.</p>
+<p>Consider modifying method in subsequent releases to include additional validation.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.safe_row_update">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">safe_row_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">my_row</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">my_columns_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.safe_row_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the row (my_row) from the table named table_name with my_columns_dict content.
+Method ensures that my_row already in the table.</p>
+<p>Consider modifying method in subsequent releases to include additional validation.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.time_get_current_user">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">time_get_current_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.time_get_current_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.DatabaseProxy.update_user_row">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.DatabaseProxy.</span></span><span class="sig-name descname"><span class="pre">update_user_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_table_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_row</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.DatabaseProxy.update_user_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the table_row in data_table_name with the contents of column_dict.</p>
+</dd></dl>
+
+</section>
+<section id="module-your_health.server_code.ServerUtilities">
+<span id="your-health-server-code-serverutilities-module"></span><h2>your_health.server_code.ServerUtilities module<a class="headerlink" href="#module-your_health.server_code.ServerUtilities" title="Permalink to this headline">¶</a></h2>
+<p>Server-side utility functions.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.ServerUtilities.change_created_timestamps">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.ServerUtilities.</span></span><span class="sig-name descname"><span class="pre">change_created_timestamps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.ServerUtilities.change_created_timestamps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change database column “created” timestamp to the current time
+for all Data Tables in table_dict where “created” is None.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.ServerUtilities.import_csv_file">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.ServerUtilities.</span></span><span class="sig-name descname"><span class="pre">import_csv_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_binary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.ServerUtilities.import_csv_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import file_binary contents to data table named table_name.</p>
+<p class="rubric">Notes</p>
+<ol class="arabic">
+<li><p>The original file was a csv text file that was updated via a file_loader component.
+When it was uploaded, it was saved as binary.
+The anvil.media.TempFile method converts the file back to text so the panda routine can work.</p></li>
+<li><p>The csv file format should be:
+“table_column_name1”,”table_column_name2”,”table_column_nameN”
+“data_for_column_1”,”data_for_column_2”,”data_for_column_N”
+“data_for_column_1”,”data_for_column_2”,”data_for_column_N”</p>
+<blockquote>
+<div><p>…</p>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.ServerUtilities.key_in_list_of_dicts">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.ServerUtilities.</span></span><span class="sig-name descname"><span class="pre">key_in_list_of_dicts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_of_dicts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.ServerUtilities.key_in_list_of_dicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine if a key value pair exists in a list of dictionaries.
+Returns the first dictionary that has the key/value pair, otherwise False.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="your_health.server_code.ServerUtilities.object_diagnostics">
+<span class="sig-prename descclassname"><span class="pre">your_health.server_code.ServerUtilities.</span></span><span class="sig-name descname"><span class="pre">object_diagnostics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#your_health.server_code.ServerUtilities.object_diagnostics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print various diagnostics of obj.</p>
+</dd></dl>
+
+</section>
+<section id="module-your_health.server_code">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-your_health.server_code" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">your_health.server_code package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-your_health.server_code.DatabaseProxy">your_health.server_code.DatabaseProxy module</a></li>
+<li><a class="reference internal" href="#module-your_health.server_code.ServerUtilities">your_health.server_code.ServerUtilities module</a></li>
+<li><a class="reference internal" href="#module-your_health.server_code">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="your_health.client_code.UploadToDB.html"
+                        title="previous chapter">your_health.client_code.UploadToDB package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/your_health.server_code.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="your_health.client_code.UploadToDB.html" title="your_health.client_code.UploadToDB package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">YourHealth 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >your_health</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="your_health.html" >your_health package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">your_health.server_code package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Tony Held.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

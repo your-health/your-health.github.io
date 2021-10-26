@@ -1,0 +1,10 @@
+your\_health.client\_code.Contacts.ContactsRow package
+======================================================
+
+Module contents
+---------------
+
+.. automodule:: your_health.client_code.Contacts.ContactsRow
+   :members:
+   :undoc-members:
+   :show-inheritance:

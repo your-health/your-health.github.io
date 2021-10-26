@@ -1,0 +1,18 @@
+your\_health.client\_code.MyLinks package
+=========================================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   your_health.client_code.MyLinks.MyLinksRow
+
+Module contents
+---------------
+
+.. automodule:: your_health.client_code.MyLinks
+   :members:
+   :undoc-members:
+   :show-inheritance:

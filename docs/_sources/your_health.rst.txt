@@ -1,0 +1,19 @@
+your\_health package
+====================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   your_health.client_code
+   your_health.server_code
+
+Module contents
+---------------
+
+.. automodule:: your_health
+   :members:
+   :undoc-members:
+   :show-inheritance:

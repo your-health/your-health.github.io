@@ -1,0 +1,10 @@
+your\_health.client\_code.MyLinks.MyLinksRow package
+====================================================
+
+Module contents
+---------------
+
+.. automodule:: your_health.client_code.MyLinks.MyLinksRow
+   :members:
+   :undoc-members:
+   :show-inheritance:

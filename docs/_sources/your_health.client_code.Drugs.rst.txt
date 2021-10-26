@@ -1,0 +1,18 @@
+your\_health.client\_code.Drugs package
+=======================================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   your_health.client_code.Drugs.DrugsRow
+
+Module contents
+---------------
+
+.. automodule:: your_health.client_code.Drugs
+   :members:
+   :undoc-members:
+   :show-inheritance:

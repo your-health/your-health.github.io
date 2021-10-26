@@ -1,0 +1,10 @@
+your\_health.client\_code.Summary package
+=========================================
+
+Module contents
+---------------
+
+.. automodule:: your_health.client_code.Summary
+   :members:
+   :undoc-members:
+   :show-inheritance:

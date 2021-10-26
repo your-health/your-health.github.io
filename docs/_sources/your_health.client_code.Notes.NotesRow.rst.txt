@@ -1,0 +1,10 @@
+your\_health.client\_code.Notes.NotesRow package
+================================================
+
+Module contents
+---------------
+
+.. automodule:: your_health.client_code.Notes.NotesRow
+   :members:
+   :undoc-members:
+   :show-inheritance:
